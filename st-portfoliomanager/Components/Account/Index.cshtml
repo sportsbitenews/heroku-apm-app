@@ -1,0 +1,12 @@
+﻿@model SofttrendsAddon.ViewModels.AccountInfo
+
+<ul class="nav navbar-nav" style="float:right">
+    @if (Model == null)
+    {
+        <li><a asp-area="" asp-controller="Login" asp-action="Index">Login</a></li>
+    }
+    else
+    {
+        <li><a href="javascript:void(0);" style="text-transform:capitalize;font-weight:bold;">@Model.name</a></li>
+    }
+</ul>

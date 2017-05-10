@@ -1,0 +1,527 @@
+﻿<h2 id="heading">Categories</h2>
+<div class="row" id="categories">
+    @if (ViewBag.Categories != null)
+    {
+        var i = 0;
+        @foreach (var item in @ViewBag.Categories)
+        {
+            i = i + 1;
+            @if (i == 6)
+            {
+                i = 1;
+            }
+            <div class="col-md-3 col-sm-3 col-xs-12 item" style="cursor:pointer" onclick="getApplications('@item.categoryId','@item.categoryName')">
+                <i class="fa fa-briefcase" style="background:#f6f6f6"></i>
+                <h3>@item.categoryName</h3>
+                @*<p>Lorem ipsum et dolor amet<br> consectetuer diam</p>*@
+            </div>
+        }
+    }
+
+</div>
+<div class="row" id="applications" style="display:none">
+
+
+</div>
+
+<!-- BEGIN SIDEBAR & CONTENT -->
+@*<div class="row margin-bottom-40">
+        <!-- BEGIN CONTENT -->
+        <div class="col-md-12 col-sm-12">
+            <h1 id="heading">Categories</h1>
+            <div class="content-page" id="categories">
+                <div class="filter-v1">
+                    <div class="row mix-grid thumbnails">
+                        @if (ViewBag.Categories != null)
+                        {
+                            var i = 0;
+                            @foreach (var item in @ViewBag.Categories)
+                            {
+                                i = i + 1;
+                                @if (i == 6)
+                                {
+                                    i = 1;
+                                }
+
+                                <div class="col-md-3 col-sm-4 mix category_1 mix_all" style="display: block; opacity: 1; ">
+                                    <div class="mix-inner">
+                                        <img alt="" src="@String.Format("../../assets/frontend/pages/img/works/img{0}.jpg",@i)" class="img-responsive">
+                                        <div class="mix-details">
+                                            <h4>@item.categoryName</h4>
+                                            <a class="mix-link" onclick="getApplications('@item.categoryId','@item.categoryName')" title="Applications"><i class="fa fa-link"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            }
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="content-page" id="applications" style="display:none">
+                <div class="col-md-12" style="padding-bottom:10px;text-align:right"  align="right">
+                    <div class="col-md-9">
+                    </div>
+                    <div class="col-md-3">
+                        <a href="javascript:void(0);" class="btn btn-default btn-block margin-bottom" id="viewAllCategory" onclick="viewallcategory()">View All Categories</a>
+                    </div>
+                </div>
+                <div class="filter-v1">
+                    <div class="row mix-grid thumbnails" id="ulapp">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END CONTENT -->
+    </div>*@
+<!-- BEGIN SIDEBAR & CONTENT -->
+<!-- END CLIENTS -->
+@*<section class="content-header">
+        <h1 id="heading">
+            Categories
+        </h1>
+    </section>*@
+<!-- Main content -->
+@*<section class="content">
+        <div class="row" id="categories" align="center">
+            <div class="panel" align="center">
+
+                <div class="content tiles-container">
+                    @if (ViewBag.Categories != null)
+                    {
+                        @foreach (var item in @ViewBag.Categories)
+                        {
+
+                            <a href="javascript:void(0);" class="tile-btn" style="border-radius:3px;vertical-align:top;" onclick="getApplications('@item.categoryId','@item.categoryName')"><i class="icon-bar-chart"></i><span>@item.categoryName</span></a>
+
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="row" id="applications" align="center" style="display:none">
+            <div class="pull-right">
+                <a href="javascript:void(0);" class="btn btn-default btn-block margin-bottom" id="viewAllCategory" onclick="viewallcategory()">View All Categories</a>
+            </div>
+            <div class="panel" align="center">
+
+                <div class="content tiles-container" id="ulapp">
+                </div>
+            </div>
+        </div>
+
+    </section>*@
+<!-- /.content -->
+@*<div class="box" id="categories">
+
+        <div class="box-body" align="center">
+
+            @if (ViewBag.Categories != null)
+            {
+            @foreach (var item in @ViewBag.Categories)
+                {
+            <a href="javascript:void(0);" class="btn btn-app" onclick="getApps('@item.categoryId','@item.categoryName')">
+                <i class="fa fa-edit"></i> <span style="font-weight:bold"> @item.categoryName</span>
+            </a>
+                }
+
+            }
+
+
+        </div>
+    </div>*@
+@*<div class="row" id="applications" style="display:none">
+        <div class="col-md-3">
+            <a href="javascript:void(0);" class="btn btn-default btn-block margin-bottom" id="viewAllCategory" onclick="viewallcategory()">View All Categories</a>
+            <a href="javascript:void(0);" class="btn btn-primary btn-block margin-bottom" id="categoryName"></a>
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Applications</h3>
+                </div>
+                <div class="box-body no-padding">
+                    <ul class="nav nav-pills nav-stacked" id="ulapp">
+                        <li class="active">
+                            <a href="#">
+                                <i class="fa fa-inbox"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /. box -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+
+            <div class="box box-primary">
+
+                <div class="box-header with-border">
+                    <h3 class="box-title" id="appName"></h3>
+
+                    <div class="box-tools pull-right">
+
+                        <div class="has-feedback">
+
+                            <a id="openapp" href="" target="_blank" class="form-control" style="padding-right:10px;">Goto Application</a>
+                        </div>
+                    </div>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding" id="documentlist">
+
+
+                    <!-- /.mail-box-messages -->
+                </div>
+                <!-- /.box-body -->
+
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>*@
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/site-validation.js"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script type="text/javascript">
+        var controllerHome = '/home/';
+        var fileContent;
+        $(document).ready(function () {
+            $('.fa.fa-briefcase').each(function () {
+                // alert();
+                $(this).css("background", getRandomColor());
+            });
+        });
+
+        $("[name=file]").change(function () {
+            if ($("[name=file]").val != "") {
+                fileContent = $("[name=file]")[0].files[0];
+            }
+        });
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        function viewallcategory() {
+            $("#heading").text("Categories");
+            $("#categories").css("display", "block");
+            $("#applications").css("display", "none");
+        }
+        function getAppDetail(id) {
+            if ($) {
+                showMask();
+                $("#openapp").attr("href", "javascript:void(0);");
+                $("#ulapp li").removeClass('active');
+                $("#ulapp").find("li[data-value='" + id + "']").addClass('active');
+                $.get(controllerHome + 'getappdetail/' + id, function (response) {
+                    console.log(response);
+                    if (response.status) {
+                        var result = "";
+                        if (response.status == 200 && response.apps != null) {
+                            var firstapp = response.apps;
+
+                            if (firstapp != null) {
+                                var app_json = JSON.parse(firstapp.app_json);
+                                if (app_json != null && app_json.web_url != "") {
+                                    console.log(app_json.web_url);
+                                    $("#openapp").attr("href", app_json.web_url);
+                                }
+                                else {
+                                    $("#openapp").attr("href", "javascript:void(0);");
+
+                                }
+
+                                var lhtml = "<span style='font-size:20px;'>Documents</span><table class='table table-bordered full-border' id='tbldocuments'><thead><th>File Name</th><th>Description</th><th>Date</th><th></th></thead><tbody>";
+                                if (app_json.fileDetailsList != null && app_json.fileDetailsList.length > 0) {
+                                    for (var i = 0; i < app_json.fileDetailsList.length; i++) {
+                                        lhtml = lhtml + "<tr>";
+                                        lhtml = lhtml + "<td>" + app_json.fileDetailsList[i].filename + "</td>";
+                                        if (app_json.fileDetailsList[i].description != null)
+                                            lhtml = lhtml + "<td>" + app_json.fileDetailsList[i].description + "</td>";
+                                        else
+                                            lhtml = lhtml + "<td></td>";
+                                        if (app_json.fileDetailsList[i].date != "" && moment(app_json.fileDetailsList[i].date).isValid()) {
+                                            lhtml = lhtml + "<td>" + moment(app_json.fileDetailsList[i].date).format('YYYY-MM-DD HH:mm:ss'); + "</td>";
+                                        }
+                                        else {
+                                            lhtml = lhtml + "<td></td>";
+                                        }
+                                        if (app_json.fileDetailsList[i].fileUrl != null)
+                                            lhtml = lhtml + "<td><a href=" + app_json.fileDetailsList[i].fileUrl + " target='_blank'><i class='fa fa-cloud-download'></i></a></td>";
+                                        else
+                                            lhtml = lhtml + "<td><a href='javascript:void(0);'><i class='fa fa-cloud-download'></i></a></td>";
+                                        // lhtml = lhtml + "<td>" + response.releases[i].updated_by + "</td>";
+                                        //lhtml = lhtml + "<td>" + moment(response.releases[i].updated_at).format('YYYY-MM-DD HH:mm:ss'); + "</td>";
+                                        lhtml = lhtml + "</tr>";
+                                    }
+
+                                }
+                                else {
+                                    lhtml = lhtml + "<tr><td colspan='4' style='text-align:center'>No data to display</td></tr>";
+
+                                    //$("input[name=apptype]").prop('checked', false);
+                                    //$("[name=txtapptags]").val("");
+                                    ////$("#documentlist").html("");
+                                    //$("input[name=txtfiledesc]").val("");
+                                }
+                                lhtml = lhtml + "</tbody></table>";
+
+
+                                $("#documentlist").html(lhtml)
+                            }
+                        }
+                        else if (response.status == 201)
+                            $("#lblMessageTags").html("Input is not valid").css({ color: 'red' });
+                        else
+                            $("#lblMessageTags").html("Documents has not been saved").css({ color: 'red' });
+                    }
+                }, 'json').always(function () {
+                    hideMask();
+                });
+            }
+        }
+
+        function getApplications(id, name) {
+            if ($) {
+                showMask();
+                $("#heading").html("<i class='fa fa-reply' style='background:none;color:black;cursor:pointer;margin-bottom:-50px;padding:0px 0 0;' onclick='viewallcategory();'></i><span>Applications</span>");
+                $("#categories").css("display", "none");
+                $("#applications").css("display", "block");
+                $("#categoryName").text(name);
+
+                $.get(controllerHome + 'getpublicapps/' + id, function (response) {
+                    console.log(response);
+                    if (response.status) {
+                        var result = "";
+                        if (response.status == 200 && response.apps != null && response.apps.length > 0) {
+                            var firstapp = response.apps[0];
+                            var j = 0;
+                            for (var i = 0; i < response.apps.length; i++) {
+                                j = j + 1;
+                                if (j == 6)
+                                    j = 1;
+                                console.log(response.apps[i]);
+                                var app_json = JSON.parse(response.apps[i].app_json);
+                                if (app_json != null && app_json.web_url != "") {
+                                    console.log(app_json.web_url);
+
+                                    result += '<div class="col-md-3 col-sm-3 col-xs-12 item"><a href="' + app_json.web_url + '" style="text-decoration:none;" target="_blank" title="Open App">';
+                                    result += '<i class="fa fa-book" style="background:' + getRandomColor() + '"></i>';
+                                    result += '<h3 style="color:#5f6f7e;font-size:16px;">' + response.apps[i].appAlaisName + '</h3>';
+                                    result += '</a></div>';
+
+                                    //result += '<div class="col-md-3 col-sm-4 mix category_1 mix_all" style="display: block; opacity: 1; ">';
+                                    //result += '<div class="mix-inner">';
+                                    //result += '<img alt="" src="../../assets/frontend/pages/img/works/img' + j + '.jpg" class="img-responsive">';
+                                    //result += '<div class="mix-details">';
+                                    //result += '<h4>' + response.apps[i].appName + '</h4>';
+                                    //result += '<a class="mix-link" href="' + app_json.web_url + '" target="_blank" title="Open App"><i class="fa fa-folder-open-o"></i></a>';
+                                    //result += '</div>';
+                                    //result += '</div>';
+                                    //result += '</div>';
+
+                                    // result += '<a href="' + app_json.web_url + '" target="_blank" class="tile-btn" style="border-radius:3px;vertical-align:top;background:' + getRandomColor() + '"><i class="icon-bar-chart"></i><span>' + response.apps[i].appName + '</span></a>';
+                                }
+                                else {
+
+                                    result += '<div class="col-md-3 col-sm-3 col-xs-12 item">';
+                                    result += '<i class="fa fa-book"></i>';
+                                    result += '<h3 style="color:#5f6f7e;font-size:16px;"><a href="javascript:void(0);" style="color:#5f6f7e;font-size:16px;" target="_blank" title="Open App">' + response.apps[i].appName + '</a></h3>';
+                                    result += '</div>';
+                                    //result += '<div class="col-md-3 col-sm-4 mix category_1 mix_all" style="display: block; opacity: 1; ">';
+                                    //result += '<div class="mix-inner">';
+                                    //result += '<img alt="" src="../../assets/frontend/pages/img/works/img' + j + '.jpg" class="img-responsive">';
+                                    //result += '<div class="mix-details">';
+                                    //result += '<h4>' + response.apps[i].appName + '</h4>';
+                                    //result += '<a class="mix-link" href="javascript:void(0);" target="_blank" title="Open App"><i class="fa fa-folder-open-o"></i></a>';
+                                    //result += '</div>';
+                                    //result += '</div>';
+                                    //result += '</div>';
+
+                                    //result += '<a href="javascript:void(0);" target="_blank" class="tile-btn" style="vertical-align:top;background:red;"><i class="icon-bar-chart"></i><span>' + response.apps[i].appName + '</span></a>';
+
+                                }
+                            }
+                            $("#applications").html(result);
+                        }
+                        else if (response.status == 201) {
+                            $("#lblMessageTags").html("Input is not valid").css({ color: 'red' });
+                            $("#ulapp").html("");
+                        }
+
+                        else {
+                            $("#lblMessageTags").html("Documents has not been saved").css({ color: 'red' });
+                            $("#ulapp").html("");
+                        }
+
+                    }
+                }, 'json').always(function () {
+                    hideMask();
+                });
+
+            }
+
+        }
+
+        function getApps(id, name) {
+            if ($) {
+                showMask();
+                $("#documentlist").html("");
+                $("#ulapp").html("");
+                $("#heading").text("Applications");
+                $("#categories").css("display", "none");
+                $("#applications").css("display", "block");
+                $("#openapp").attr("href", "javascript:void(0);");
+                $("#categoryName").text(name);
+
+                $.get(controllerHome + 'getpublicapps/' + id, function (response) {
+                    console.log(response);
+                    if (response.status) {
+                        var result = "";
+                        if (response.status == 200 && response.apps != null && response.apps.length > 0) {
+                            var firstapp = response.apps[0];
+                            for (var i = 0; i < response.apps.length; i++) {
+                                console.log(response.apps[i].appName);
+                                if (i == 0)
+                                    result += '<li class="active"  data-value="' + response.apps[i].appId + '">';
+                                else
+                                    result += '<li class=""  data-value="' + response.apps[i].appId + '">';
+                                result += '<a href="javascript:void(0);" onclick="getAppDetail(\'' + response.apps[i].appId + '\')"> <i class="fa fa-circle"></i>' + response.apps[i].appName;
+                                result += '</a></li>';
+                            }
+                            $("#ulapp").html(result);
+                            if (firstapp != null) {
+                                var app_json = JSON.parse(firstapp.app_json);
+                                if (app_json != null && app_json.web_url != "") {
+                                    console.log(app_json.web_url);
+                                    $("#openapp").attr("href", app_json.web_url);
+                                }
+                                else {
+                                    $("#openapp").attr("href", "javascript:void(0);");
+
+                                }
+
+                                var lhtml = "<span style='font-size:20px;'>Documents</span><table class='table table-bordered full-border' id='tbldocuments'><thead><th>File Name</th><th>Description</th><th>Date</th><th></th></thead><tbody>";
+                                if (app_json.fileDetailsList != null && app_json.fileDetailsList.length > 0) {
+                                    for (var i = 0; i < app_json.fileDetailsList.length; i++) {
+                                        lhtml = lhtml + "<tr>";
+                                        lhtml = lhtml + "<td>" + app_json.fileDetailsList[i].filename + "</td>";
+                                        if (app_json.fileDetailsList[i].description != null)
+                                            lhtml = lhtml + "<td>" + app_json.fileDetailsList[i].description + "</td>";
+                                        else
+                                            lhtml = lhtml + "<td></td>";
+                                        if (app_json.fileDetailsList[i].date != "" && moment(app_json.fileDetailsList[i].date).isValid()) {
+                                            lhtml = lhtml + "<td>" + moment(app_json.fileDetailsList[i].date).format('YYYY-MM-DD HH:mm:ss'); + "</td>";
+                                        }
+                                        else {
+                                            lhtml = lhtml + "<td></td>";
+                                        }
+                                        if (app_json.fileDetailsList[i].fileUrl != null)
+                                            lhtml = lhtml + "<td><a href=" + app_json.fileDetailsList[i].fileUrl + " target='_blank'><i class='fa fa-cloud-download'></i></a></td>";
+                                        else
+                                            lhtml = lhtml + "<td><a href='javascript:void(0);'><i class='fa fa-cloud-download'></i></a></td>";
+                                        // lhtml = lhtml + "<td>" + response.releases[i].updated_by + "</td>";
+                                        //lhtml = lhtml + "<td>" + moment(response.releases[i].updated_at).format('YYYY-MM-DD HH:mm:ss'); + "</td>";
+                                        lhtml = lhtml + "</tr>";
+                                    }
+
+                                }
+                                else {
+                                    lhtml = lhtml + "<tr><td colspan='4' style='text-align:center'>No data to display</td></tr>";
+
+                                    //$("input[name=apptype]").prop('checked', false);
+                                    //$("[name=txtapptags]").val("");
+                                    ////$("#documentlist").html("");
+                                    //$("input[name=txtfiledesc]").val("");
+                                }
+                                lhtml = lhtml + "</tbody></table>";
+
+
+                                $("#documentlist").html(lhtml);
+                            }
+
+
+
+                        }
+                        else if (response.status == 201) {
+                            $("#lblMessageTags").html("Input is not valid").css({ color: 'red' });
+                            $("#documentlist").html("");
+                            $("#ulapp").html("");
+                            $("#openapp").attr("href", "javascript:void(0);");
+                        }
+
+                        else {
+                            $("#lblMessageTags").html("Documents has not been saved").css({ color: 'red' });
+                            $("#documentlist").html("");
+                            $("#ulapp").html("");
+                            $("#openapp").attr("href", "javascript:void(0);");
+                        }
+
+                    }
+                }, 'json').always(function () {
+                    hideMask();
+                });
+
+            }
+
+        }
+        function savetagDetails() {
+            if ($) {
+                if ($("[name=apptype]").val() == undefined || $("[name=apptype]").val() == "") {
+                    $("#lblMessageTags").html("Select app type").css({ color: 'red' });
+                }
+                else if ($("[name=txtapptags]").val() == undefined || $("[name=txtapptags]").val() == "") {
+
+                    $("#lblMessageTags").html("Enter app tag").css({ color: 'red' });
+                }
+                else {
+                    showMask();
+                    var tag = {
+                        apptype: $("[name=apptype]:checked").val(),
+                        tags: $("[name=txtapptags]").val(),
+                        appName: $("#spnAppName").text(),
+                        appaccess: $("[name=appaccess]:checked").val(),
+                    }
+
+                    $.post(controllerAssign + 'tags/', tag, function (response) {
+                        console.log(response);
+                        if (response.status) {
+                            if (response.status == 200) {
+                                //alert("successfully added");
+                                getDocuments($("#spnAppName").text());
+                                $("#lblMessageTags").html("");
+                                $('#attachfile').css('display', 'none');
+                                $('#addtags').css('display', 'none');
+                                $('[name=btnEdit]').css('display', 'block');
+                                $('[name=btnAttachDocument]').css('display', 'block');
+                            }
+                            else if (response.status == 201)
+                                $("#lblMessageTags").html("Input is not valid").css({ color: 'red' });
+                            else
+                                $("#lblMessageTags").html("Documents has not been saved").css({ color: 'red' });
+                        }
+                    }, 'json').always(function () {
+                        hideMask();
+                    });
+                }
+
+            }
+        }
+
+    </script>
+
+}
