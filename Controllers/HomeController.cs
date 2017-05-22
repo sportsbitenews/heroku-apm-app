@@ -30,22 +30,39 @@ namespace SofttrendsAddon.Controllers
             try
             {
                 string resourceId = ConfigVars.Instance.ResourceId;
+                Console.WriteLine("resource id :" + id);
                 if (!string.IsNullOrEmpty(resourceId))
                 {
-                    List<Categories> result = AddonAPI.GetCategoryInfo(resourceId);
-                    if (result != null && result.Count > 0)
+                    Resources resource = AddonAPI.GetResource(resourceId);
+                    Console.WriteLine("resource  :" + JsonConvert.SerializeObject(resource));
+                    if (resource != null && !string.IsNullOrEmpty(resource.uuid))
                     {
-                        ViewBag.Categories = result;
+                        List<Categories> result = AddonAPI.GetCategoryInfo(resourceId);
+                        Console.WriteLine("Categories :" + JsonConvert.SerializeObject(result));
+                        if (result != null && result.Count > 0)
+                        {
+                            ViewBag.Categories = result;
+                            ViewBag.AlertMessage = null;
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.Categories = null;
+                        ViewBag.AlertMessage = "Portfolio Manager is De-provisioned from your Heroku account. Please delete this App from your account as it will not work when it is not linked to a Portfolio Manager add-on.";
                     }
                     return View();
                 }
                 else
                 {
-                    return Json(new { Status = (int)HttpStatusCode.InternalServerError });
+                    ViewBag.Categories = null;
+                    ViewBag.AlertMessage = "Portfolio Manager is De-provisioned from your Heroku account. Please delete this App from your account as it will not work when it is not linked to a Portfolio Manager add-on.";
+                    return View();
                 }
             }
             catch (Exception ex)
             {
+                ViewBag.Categories = null;
+                ViewBag.AlertMessage = null;
                 _logger.LogError(ex.Message, ex);
             }
             return View();

@@ -7,7 +7,6 @@ using RestSharp.Extensions.MonoHttp;
 using SofttrendsAddon.Extensions;
 using SofttrendsAddon.Helpers;
 using SofttrendsAddon.Models;
-using SofttrendsAddon.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,6 +48,31 @@ namespace SofttrendsAddon.Services
             if (httpResponse != null && (httpResponse.StatusCode == HttpStatusCode.OK || httpResponse.StatusCode == HttpStatusCode.Created))
             {
                 return (new RestSharp.Deserializers.JsonDeserializer()).Deserialize<List<Categories>>(httpResponse);
+            }
+            return null;
+        }
+
+        public static SofttrendsAddon.Models.Resources GetResource(string id)
+        {
+            var request = mFactory.CreateRequest();
+            request.Resource = "/getresource/" + id;
+            request.Method = Method.GET;
+            request.AddHeader("content-type", "application/json");
+            var blocker = new AutoResetEvent(false);
+
+            IRestResponse httpResponse = null;
+            var client = mFactory.CreateClient();
+            client.BaseUrl = new Uri(ConfigVars.Instance.AddonAPIUrl + "home");
+            client.ExecuteAsync(request, response =>
+            {
+                httpResponse = response;
+                blocker.Set();
+            });
+            blocker.WaitOne();
+
+            if (httpResponse != null && (httpResponse.StatusCode == HttpStatusCode.OK || httpResponse.StatusCode == HttpStatusCode.Created))
+            {
+                return (new RestSharp.Deserializers.JsonDeserializer()).Deserialize<SofttrendsAddon.Models.Resources>(httpResponse);
             }
             return null;
         }

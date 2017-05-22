@@ -1,21 +1,32 @@
-﻿<h2 id="heading">Categories</h2>
+﻿
+@if (ViewBag.Categories != null)
+{
+    <h2 id="heading">Categories</h2>
+}
 <div class="row" id="categories">
     @if (ViewBag.Categories != null)
     {
         var i = 0;
         @foreach (var item in @ViewBag.Categories)
         {
-            i = i + 1;
-            @if (i == 6)
+            @if (!string.IsNullOrEmpty(item.categoryName))
             {
-                i = 1;
+                i = i + 1;
+                @if (i == 6)
+                {
+                    i = 1;
+                }
+                <div class="col-md-3 col-sm-3 col-xs-12 item" style="cursor:pointer" onclick="getApplications('@item.categoryId','@item.categoryName')">
+                    <i class="fa fa-briefcase" style="background:#f6f6f6"></i>
+                    <h3>@item.categoryName</h3>
+                </div>
             }
-            <div class="col-md-3 col-sm-3 col-xs-12 item" style="cursor:pointer" onclick="getApplications('@item.categoryId','@item.categoryName')">
-                <i class="fa fa-briefcase" style="background:#f6f6f6"></i>
-                <h3>@item.categoryName</h3>
-                @*<p>Lorem ipsum et dolor amet<br> consectetuer diam</p>*@
-            </div>
         }
+    }
+    else if (ViewBag.AlertMessage != null)
+    {
+
+        <div style="font-size:20px;font-weight:bold">@ViewBag.AlertMessage</div>
     }
 
 </div>
